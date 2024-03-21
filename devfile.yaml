@@ -1,0 +1,49 @@
+schemaVersion: 2.2.0
+metadata:
+  name: python-teste
+  version: 0.0.1
+  description: A web service template.
+  projectType: Python
+  language: Python
+  provider: Red Hat
+  tags: [ 'Python', 'Jupyter']
+  displayName: Simple Python Test
+
+components:
+  - name: image-dockerfile
+    image:
+      imageName: image:latest
+      dockerfile:
+        uri: docker/Dockerfile
+        buildContext: .
+        rootRequired: true
+        
+  - name: kubernetes-deploy
+    attributes:
+      deployment/replicas: 1
+      deployment/container-port: 8080
+    kubernetes:
+      uri: deploy.yaml
+      endpoints:
+      - name: http-8080
+        targetPort: 8080
+        path: /
+        secure: true
+
+commands:
+  - id: build-image
+    apply:
+      component: image-dockerfile
+
+  - id: deploy-pod
+    apply:
+      component: kubernetes-deploy
+
+  - id: deploy
+    composite:
+      commands:
+        - build-image
+        - deploy-pod
+      group:
+        kind: deploy
+        isDefault: true
