@@ -15,9 +15,7 @@ components:
       imageName: image:latest
       dockerfile:
         uri: docker/Dockerfile
-        buildContext: .
-        rootRequired: true
-        
+       
   - name: kubernetes-deploy
     attributes:
       deployment/replicas: 1
