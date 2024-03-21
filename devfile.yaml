@@ -8,7 +8,8 @@ metadata:
   provider: Red Hat
   tags: [ 'Python', 'Jupyter']
   displayName: Simple Python Test
-
+  attributes:
+    alpha.dockerimage-port: 8080
 components:
   - name: image-dockerfile
     image:
