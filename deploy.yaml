@@ -10,7 +10,7 @@ spec:
       storage: 2Gi
 ---
 apiVersion: v1
-kind: Pod
+kind: Deployment
 metadata:
   name: task-pv-pod
 spec:
