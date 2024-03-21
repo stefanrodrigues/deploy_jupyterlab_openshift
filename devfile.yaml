@@ -8,12 +8,14 @@ metadata:
   provider: Red Hat
   tags: [ 'Python', 'Jupyter']
   displayName: Simple Python Test
+
 components:
   - name: image-dockerfile
     image:
       imageName: image:latest
       dockerfile:
         uri: docker/Dockerfile
+
   - name: kubernetes-deploy
     attributes:
       deployment/replicas: 1
@@ -25,13 +27,16 @@ components:
         targetPort: 8080
         path: /
         secure: true
+
 commands:
   - id: build-image
     apply:
       component: image-dockerfile
+      
   - id: deploy-pod
     apply:
       component: kubernetes-deploy
+      
   - id: deploy
     composite:
       commands:
