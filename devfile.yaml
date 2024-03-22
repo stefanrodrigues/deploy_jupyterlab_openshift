@@ -11,11 +11,16 @@ metadata:
   attributes:
     alpha.dockerimage-port: 8080
 components:
-  - name: image-dockerfile
+  - name: outerloop-build
     image:
-      imageName: image:latest
+      imageName: python-image:latest
+      autoBuild: true
       dockerfile:
         uri: docker/Dockerfile
+        args:
+          - 'MY_ENV=/home/path'
+        buildContext: .
+        rootRequired: false
 
   - name: kubernetes-deploy
     attributes:
@@ -32,7 +37,7 @@ components:
 commands:
   - id: build-image
     apply:
-      component: image-dockerfile
+      component: outerloop-build
       
   - id: deploy-pod
     apply:
