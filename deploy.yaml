@@ -25,5 +25,5 @@ spec:
         - containerPort: 8888
           name: "http-server-jupyter"
       volumeMounts:
-        - mountPath: "/tmp/"
+        - mountPath: "/opt/app-root/src/"
           name: task-pv-storage
