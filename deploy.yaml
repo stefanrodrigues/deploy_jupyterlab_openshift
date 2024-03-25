@@ -22,7 +22,7 @@ spec:
     - name: task-pv-container
       image: python
       ports:
-        - containerPort: 8080
+        - containerPort: 8888
           name: "http-server-jupyter"
       volumeMounts:
         - mountPath: "/tmp/"
