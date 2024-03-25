@@ -31,8 +31,7 @@ components:
       endpoints:
       - name: http-8888
         targetPort: 8888
-        path: /
-        secure: true
+        exposure: public
 
 commands:
   - id: build-image
