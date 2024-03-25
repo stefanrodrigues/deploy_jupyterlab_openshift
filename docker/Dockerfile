@@ -6,6 +6,6 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r ./requirements.txt
 
 #Port Expose
-EXPOSE 8080
+EXPOSE 8888
 
 CMD [ "jupyter","lab","--ip=0.0.0.0" ]
