@@ -18,20 +18,24 @@ spec:
   selector:
     matchLabels:
       app: task-pv-pod
-spec:
-  volumes:
-    - name: task-pv-storage
-      persistentVolumeClaim:
-        claimName: task-pv-claim
-  containers:
-    - name: task-pv-container
-      image: python
-      ports:
-        - containerPort: 8888
-          name: "http-server-jupyter"
-      volumeMounts:
-        - mountPath: "/opt/app-root/src/"
-          name: task-pv-storage
+  template:
+    metadata:
+      labels:
+        app: task-pv-pod
+    spec:
+      volumes:
+        - name: task-pv-storage
+          persistentVolumeClaim:
+            claimName: task-pv-claim
+      containers:
+        - name: task-pv-container
+          image: python
+          ports:
+            - containerPort: 8888
+              name: "http-server-jupyter"
+          volumeMounts:
+            - mountPath: "/opt/app-root/src/"
+              name: task-pv-storage
 ---
 kind: Service
 apiVersion: v1
