@@ -14,6 +14,11 @@ kind: Deployment
 metadata:
   name: task-pv-pod
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: task-pv-pod
+spec:
   volumes:
     - name: task-pv-storage
       persistentVolumeClaim:
@@ -27,3 +32,16 @@ spec:
       volumeMounts:
         - mountPath: "/opt/app-root/src/"
           name: task-pv-storage
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: task-pv-pod
+spec:
+  ports:
+    - name: http-8888
+      port: 8888
+      protocol: TCP
+      targetPort: 8888
+  selector:
+    app: task-pv-pod
