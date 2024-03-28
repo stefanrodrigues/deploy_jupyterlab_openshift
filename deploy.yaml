@@ -1,14 +1,3 @@
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: task-pv-claim
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 2Gi
----
 kind: Service
 apiVersion: v1
 metadata:
@@ -39,7 +28,7 @@ spec:
       volumes:
         - name: task-pv-storage
           persistentVolumeClaim:
-            claimName: task-pv-claim
+            claimName: jupyterlab-persistente
       containers:
         - name: task-pv-container
           image: jupyterlab-image:latest
