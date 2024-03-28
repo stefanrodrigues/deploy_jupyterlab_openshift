@@ -33,9 +33,7 @@ spec:
         - name: task-pv-container
           image: jupyterlab-image:latest
           ports:
-            - name: 8888
-              containerPort: 8888
-              protocol: TCP
+          - containerPort: 8888
           volumeMounts:
             - mountPath: "/opt/app-root/src/"
               name: task-pv-storage
