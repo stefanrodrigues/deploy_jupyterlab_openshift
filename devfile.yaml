@@ -11,20 +11,19 @@ metadata:
   attributes:
     alpha.dockerimage-port: 8888
 components:
-  - name: outerloop-build
+  - name: image-build
     image:
-      imageName: python-image:latest
-      autoBuild: true
+      imageName: jupyterlab-image:latest
       dockerfile:
         uri: docker/Dockerfile
-        args:
-          - 'MY_ENV=/home/path'
         buildContext: .
         rootRequired: false
 
   - name: kubernetes-deploy
     attributes:
       deployment/replicas: 1
+      deployment/cpuRequest: 10m
+      deployment/memoryRequest: 50Mi
       deployment/container-port: 8888
     kubernetes:
       uri: deploy.yaml
@@ -36,7 +35,7 @@ components:
 commands:
   - id: build-image
     apply:
-      component: outerloop-build
+      component: image-build
       
   - id: deploy-pod
     apply:
