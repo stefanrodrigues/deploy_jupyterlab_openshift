@@ -4,9 +4,10 @@ metadata:
   name: task-pv-pod
 spec:
   ports:
-  - port: 80
-    protocol: TCP
+  - name: http
+    port: 80
     targetPort: 8888
+    protocol: TCP
   selector:
     app: task-pv-pod
 ---
