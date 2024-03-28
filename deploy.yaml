@@ -13,6 +13,21 @@ spec:
       port: 8888
       targetPort: 8888
 ---
+apiVersion: v1
+kind: Route
+metadata:
+  name: task-pv-pod
+  spec:
+    to:
+      kind: Service
+      name: task-pv-pod
+      weight: 100
+    port:
+      targetPort: 8888
+    tls:
+      termination: edge
+      insecureEdgeTerminationPolicy: Redirect
+---
 kind: Deployment
 apiVersion: v1
 metadata:
