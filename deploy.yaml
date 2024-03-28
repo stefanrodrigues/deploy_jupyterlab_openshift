@@ -14,7 +14,6 @@ kind: Deployment
 metadata:
   name: task-pv-pod
 spec:
-  replicas: 0
   selector:
     matchLabels:
       app: task-pv-pod
