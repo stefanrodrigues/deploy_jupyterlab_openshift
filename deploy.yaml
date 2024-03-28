@@ -1,3 +1,27 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: task-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: task-pv-pod
+spec:
+  ports:
+    - name: http
+      port: 8888
+      protocol: TCP
+      targetPort: 8888
+  selector:
+    app: task-pv-pod
+---
 kind: Deployment
 apiVersion: v1
 metadata:
@@ -26,28 +50,6 @@ spec:
           volumeMounts:
             - mountPath: "/opt/app-root/src/"
               name: task-pv-storage
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: task-pv-pod
-spec:
-  ports:
-    - name: http
-      port: 8888
-      protocol: TCP
-      targetPort: 8888
-  selector:
-    app: task-pv-pod
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: task-pv-claim
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 2Gi
+
+
 
