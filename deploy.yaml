@@ -33,7 +33,7 @@ spec:
         - name: task-pv-container
           image: jupyterlab-image:latest
           ports:
-            - name: http
+            - name: 8888
               containerPort: 8888
               protocol: TCP
           volumeMounts:
