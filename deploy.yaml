@@ -33,11 +33,12 @@ metadata:
   name: jupyterlab-pvc
 spec:
   accessModes:
-    -ReadWriteOnce
+    - ReadWriteOnce
+  volumeMode: Filesystem
   resources:
     requests:
       storage: 2Gi
-    storageClassName: ocs-external-storagecluster-ceph-rbd
+  storageClassName: ""
 ---
 apiVersion: v1
 kind: Deployment
