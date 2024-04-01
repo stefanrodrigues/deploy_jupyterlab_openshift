@@ -28,19 +28,6 @@ spec:
       insecureEdgeTerminationPolicy: Redirect
 ---
 apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: jupyterlab-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  volumeMode: Filesystem
-  resources:
-    requests:
-      storage: 2Gi
-  storageClassName: ""
----
-apiVersion: v1
 kind: Deployment
 metadata:
   name: task-pv-pod
@@ -67,5 +54,14 @@ spec:
         - name: task-pv-storage
           persistentVolumeClaim:
             claimName: jupyterlab-pvc
-
-
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: jupyterlab-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
