@@ -48,8 +48,9 @@ spec:
           - containerPort: 8888
             protocol: TCP
           volumeMounts:
-            - mountPath: "/opt/app-root/src/"
-              name: task-pv-storage
+            - name: task-pv-storage
+              readOnly: false
+              mountPath: /opt/app-root/src/
       volumes:
         - name: task-pv-storage
           persistentVolumeClaim:
