@@ -20,13 +20,7 @@ components:
         rootRequired: false
 
   - name: kubernetes-deploy
-    attributes:
-      deployment/replicas: 1
-      deployment/cpuRequest: 10m
-      deployment/memoryRequest: 50Mi
-      deployment/container-port: 8888
-    kubernetes:
-      uri: deploy.yaml
+    container:
       endpoints:
       - name: http-8888
         targetPort: 8888
