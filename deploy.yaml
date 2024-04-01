@@ -23,7 +23,7 @@ metadata:
       name: task-pv-pod
       weight: 100
     port:
-      targetPort: 8888
+      targetPort: 8888-tcp
     tls:
       termination: edge
       insecureEdgeTerminationPolicy: Redirect
