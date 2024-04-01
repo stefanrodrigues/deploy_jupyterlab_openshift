@@ -16,8 +16,8 @@ spec:
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: task-pv-pod
-  spec:
+  name: task-pv-pod  
+spec:
     to:
       kind: Service
       name: task-pv-pod
