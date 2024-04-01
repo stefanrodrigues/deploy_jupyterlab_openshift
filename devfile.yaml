@@ -21,6 +21,7 @@ components:
 
   - name: kubernetes-deploy
     container:
+      image: jupyterlab-image:latest
       endpoints:
       - name: http-8888
         targetPort: 8888
