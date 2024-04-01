@@ -28,6 +28,18 @@ metadata:
       termination: edge
       insecureEdgeTerminationPolicy: Redirect
 ---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: jupyterlab-pvc
+spec:
+  accessModes:
+    -ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+    storageClassName: ocs-external-storagecluster-ceph-rbd
+---
 kind: Deployment
 apiVersion: v1
 metadata:
@@ -42,10 +54,6 @@ spec:
       labels:
         app: task-pv-pod
     spec:
-      volumes:
-        - name: task-pv-storage
-          persistentVolumeClaim:
-            claimName: jupyterlab-persistente
       containers:
         - name: task-pv-container
           image: jupyterlab-image:latest
@@ -55,6 +63,9 @@ spec:
           volumeMounts:
             - mountPath: "/opt/app-root/src/"
               name: task-pv-storage
-
+      volumes:
+        - name: task-pv-storage
+          persistentVolumeClaim:
+            claimName: jupyterlab-pvc
 
 
