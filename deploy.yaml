@@ -28,7 +28,7 @@ spec:
       insecureEdgeTerminationPolicy: Redirect
 ---
 apiVersion: v1
-kind: Deployment
+kind: Pod
 metadata:
   name: task-pv-pod
 spec:
