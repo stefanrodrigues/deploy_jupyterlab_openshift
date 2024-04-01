@@ -31,6 +31,12 @@ components:
       - name: http-8888
         targetPort: 8888
         exposure: public
+      volumeMounts:
+        - name: cache
+          path: /opt/app-root/src
+  - name: cache
+    volume:
+      size: 2Gi
 
 commands:
   - id: build-image
