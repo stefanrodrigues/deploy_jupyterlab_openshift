@@ -24,6 +24,9 @@ metadata:
       weight: 100
     port:
       targetPort: 8888
+    tls:
+      termination: edge
+      insecureEdgeTerminationPolicy: Redirect
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
